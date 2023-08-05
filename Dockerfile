@@ -1,8 +1,9 @@
-FROM debian:wheezy
+FROM debian:bookworm-slim
 ENV DEBIAN_FRONTEND noninteractive
 MAINTAINER antti@bitalo.com
 ADD proxmox.list /etc/apt/sources.list.d/proxmox.list
-ADD http://download.proxmox.com/debian/key.asc /tmp/key.asc
-RUN apt-key add /tmp/key.asc \
- && apt-get update \
- && apt-get install -y pve-qemu-kvm
+ADD --chown=_apt:root http://download.proxmox.com/debian/proxmox-release-bookworm.gpg /etc/apt/trusted.gpg.d
+RUN apt-get update \
+ && apt-get install --no-install-recommends -y pve-qemu-kvm zstd lzop gzip \
+ && apt-get clean -m \
+ && rm -r /var/lib/apt/lists/*

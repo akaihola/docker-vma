@@ -7,7 +7,7 @@
 
 # Introduction
 
-Dockerfile to build a Debian Wheezy image
+Dockerfile to build a Debian Bookworm image
 with the Proxmox [vma](http://pve.proxmox.com/wiki/VMA#Command_line_utility)
 command line utility
 
